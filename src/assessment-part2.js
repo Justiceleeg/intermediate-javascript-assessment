@@ -11,7 +11,7 @@
 // You must use two .then functions to handle the response object.
 // Chain these functions off of $http (do not put them in variables)
 // The response object will look like this :
-/* 
+/*
     {
       data: [
         {
@@ -41,8 +41,7 @@ function noWeakLink() {
     method: 'GET',
     url: '/api/users'
   })
-  // CODE HERE...
-
+  //CODE HERE
 
   return promise;
 }
@@ -74,6 +73,8 @@ function large() {
 }
 // CODE HERE...
 
+var boundToElephant = large.bind(elephant);
+
 
 
 // *************
@@ -87,6 +88,9 @@ function large() {
 
 // CODE HERE...
 
+function deathStar(capacity, crew){
+  return capacity.bind(crew)
+}
 
 
 // *************
@@ -101,6 +105,14 @@ function large() {
 // The closure function will returns the combined value of assets and liabilities.
 
 // CODE HERE...
+
+function accountingOffice(param) {
+  var assets = param;
+
+  return function (liabilities){
+    return liabilities + assets;
+  }
+}
 
 
 
@@ -126,6 +138,19 @@ function large() {
 // };
 
 // CODE HERE...
+
+function forgetter(name) {
+  var name = name;
+  var items = [];
+
+  return function rememberall(item){
+    items.push(item);
+    return {
+      name: name,
+      remember: items
+    }
+  }
+}
 
 
 
@@ -154,3 +179,49 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+
+function frodo(startingHungerValue, startingDangerValue){
+  var hunger = startingHungerValue;
+  var danger = startingDangerValue;
+
+
+  return {
+    dinnerOverFire: function () {
+      hunger -= 25;
+      danger += 40;
+      if (hunger > 100){
+        hunger = 100;
+      } else if (hunger < 0){
+        hunger =0;
+      }
+      if (danger > 100){
+        danger = 100;
+      } else if (danger < 0){
+        danger =0;
+      }
+      return {
+        hunger: hunger,
+        danger: danger
+      }
+    },
+    hidingInBush: function () {
+      hunger += 35;
+      danger -= 20;
+      if (hunger > 100){
+        hunger = 100;
+      } else if (hunger < 0){
+        hunger =0;
+      }
+      if (danger > 100){
+        danger = 100;
+      } else if (danger < 0){
+        danger =0;
+      }
+      return {
+        hunger: hunger,
+        danger: danger
+      }
+    }
+  }
+
+}
